@@ -30,6 +30,9 @@ public class CompanyServiceImpl implements CompanyService {
         if (companyDTO.getLocationId() == null) {
             throw new MeetingBusinessException(MeetingBusinessRule.PROVINCE_NOT_FOUND.getDescription());
         }
+        if (companyDTO.getTotalEmployeeNumber() == null || companyDTO.getTotalEmployeeNumber() <= 0) {
+            throw new MeetingBusinessException(MeetingBusinessRule.TOTAL_EMPLOYEE_NUMBER_INVALID.getDescription());
+        }
         Optional<Province> optionalProvince = provinceRepository.findById(companyDTO.getLocationId());
         if (!optionalProvince.isPresent()) {
             throw new MeetingBusinessException(MeetingBusinessRule.PROVINCE_NOT_FOUND.getDescription());

@@ -37,6 +37,9 @@ public class MeetingRoomServiceImpl implements MeetingRoomService {
         if (meetingRoomDTO.getDistrictId() == null) {
             throw new MeetingBusinessException(MeetingBusinessRule.DISTRICT_NOT_FOUND.getDescription());
         }
+        if (meetingRoomDTO.getPersonCapacity() == null || meetingRoomDTO.getPersonCapacity() <= 0) {
+            throw new MeetingBusinessException(MeetingBusinessRule.PERSON_CAPACITY_INVALID.getDescription());
+        }
         Optional<District> optionalDistrict = districtRepository.findById(meetingRoomDTO.getDistrictId());
         if (!optionalDistrict.isPresent()) {
             throw new MeetingBusinessException(MeetingBusinessRule.DISTRICT_NOT_FOUND.getDescription());
