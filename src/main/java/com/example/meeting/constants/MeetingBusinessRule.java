@@ -29,7 +29,7 @@ public enum MeetingBusinessRule {
     MEETING_ROOM_HAS_BEEN_RESERVED_PLEASE_TRY_FOR_OTHER_TIMES("MEETING_ROOM_HAS_BEEN_RESERVED_PLEASE_TRY_FOR_OTHER_TIMES"),
 
     PEOPLE("PEOPLE");
-    
+
     MeetingBusinessRule(String description) {
         this.description = description;
     }

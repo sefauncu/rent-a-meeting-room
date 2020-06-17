@@ -1,10 +1,5 @@
 package com.example.meeting.dto;
 
-import com.example.meeting.domain.Company;
-import com.sun.istack.NotNull;
-
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import java.time.LocalDate;
 
 public class RegisterDTO {

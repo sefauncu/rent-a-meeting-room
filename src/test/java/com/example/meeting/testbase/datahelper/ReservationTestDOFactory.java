@@ -11,7 +11,7 @@ public class ReservationTestDOFactory {
         ReservationDTO reservationDTO = new ReservationDTO();
         reservationDTO.setId(1L);
         reservationDTO.setCode("TEST");
-        reservationDTO.setStartDate(LocalDateTime.now());
+        reservationDTO.setStartDate(LocalDateTime.now().plusHours(3));
         reservationDTO.setEndDate(LocalDateTime.now().plusHours(3));
         reservationDTO.setCompanyId(1L);
         reservationDTO.setMeetingRoomId(1L);
@@ -25,7 +25,7 @@ public class ReservationTestDOFactory {
         reservation.setId(1L);
         reservation.setCode("TEST");
         reservation.setStartDate(LocalDateTime.now());
-        reservation.setEndDate(LocalDateTime.now().plusHours(3));
+        reservation.setEndDate(LocalDateTime.now());
         reservation.setCompany(doFactory.createCompany());
         reservation.setMeetingRoom(doFactory2.createMeetingRoom());
         return reservation;

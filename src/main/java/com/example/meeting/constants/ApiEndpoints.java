@@ -1,8 +1,6 @@
 package com.example.meeting.constants;
 
-import org.springframework.http.MediaType;
-
-public final class  ApiEndpoints {
+public final class ApiEndpoints {
     public static final String API_BASE_URL = "/api";
     public static final String PROVINCE_API_URL = API_BASE_URL + "/province";
     public static final String DISTRICT_API_URL = API_BASE_URL + "/district";

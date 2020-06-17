@@ -1,7 +1,9 @@
 package com.example.meeting.service.impl;
 
+import com.example.meeting.constants.MeetingBusinessRule;
 import com.example.meeting.domain.Province;
 import com.example.meeting.dto.ProvinceDTO;
+import com.example.meeting.exception.MeetingBusinessException;
 import com.example.meeting.repository.ProvinceRepository;
 import com.example.meeting.testbase.datahelper.ProvinceTestDOFactory;
 import com.example.meeting.util.MappingHelper;
@@ -18,6 +20,8 @@ import org.mockito.junit.MockitoJUnitRunner;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
 import static org.mockito.ArgumentMatchers.any;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -54,4 +58,17 @@ public class ProvinceServiceImplTest {
         Long actual = provinceService.save(provinceDTO);
         Assert.assertEquals(province.getId(), actual);
     }
+
+    @Test
+    public void saveFail() {
+        try {
+            ProvinceDTO provinceDTO = doFactory.createProvinceDTO();
+            provinceDTO.setName(null);
+            provinceService.save(provinceDTO);
+            fail(MeetingBusinessRule.PROVINCE_NAME_NOT_FOUND + "expected but not thrown");
+        } catch (MeetingBusinessException ex) {
+            assertEquals(MeetingBusinessRule.PROVINCE_NAME_NOT_FOUND.getDescription(), ex.getMessage());
+        }
+    }
+
 }
