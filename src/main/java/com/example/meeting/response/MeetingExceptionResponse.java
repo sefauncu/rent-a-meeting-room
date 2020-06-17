@@ -4,9 +4,9 @@ package com.example.meeting.response;
 import java.time.LocalDateTime;
 
 public class MeetingExceptionResponse {
-    private LocalDateTime timestamp;
-    private String message;
-    private String details;
+    private final LocalDateTime timestamp;
+    private final String message;
+    private final String details;
 
     public MeetingExceptionResponse(LocalDateTime timestamp, String message, String details) {
         super();
