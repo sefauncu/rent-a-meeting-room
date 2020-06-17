@@ -18,7 +18,7 @@ import java.util.List;
 public class RegisterController {
 
     @Autowired
-    RegisterService registerService;
+    private RegisterService registerService;
 
 
     @ApiOperation(value = "", notes = "findAll")

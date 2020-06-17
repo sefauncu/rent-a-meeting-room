@@ -18,7 +18,7 @@ import java.util.List;
 public class DistrictController {
 
     @Autowired
-    DistrictService districtService;
+    private DistrictService districtService;
 
 
     @ApiOperation(value = "", notes = "findAll")

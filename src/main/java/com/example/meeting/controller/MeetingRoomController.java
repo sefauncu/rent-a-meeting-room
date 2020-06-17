@@ -18,7 +18,7 @@ import java.util.List;
 public class MeetingRoomController {
 
     @Autowired
-    MeetingRoomService meetingRoomService;
+    private MeetingRoomService meetingRoomService;
 
 
     @ApiOperation(value = "", notes = "findAll")

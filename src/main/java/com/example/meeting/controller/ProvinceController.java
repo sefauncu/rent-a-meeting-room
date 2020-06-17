@@ -18,7 +18,7 @@ import java.util.List;
 public class ProvinceController {
 
     @Autowired
-    ProvinceService provinceService;
+    private ProvinceService provinceService;
 
 
     @ApiOperation(value = "", notes = "findAll")

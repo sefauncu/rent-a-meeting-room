@@ -19,7 +19,7 @@ import java.util.List;
 public class ReservationController {
 
     @Autowired
-    ReservationService reservationService;
+    private ReservationService reservationService;
 
 
     @ApiOperation(value = "", notes = "findAll")

@@ -18,7 +18,7 @@ import java.util.List;
 public class CompanyController {
 
     @Autowired
-    CompanyService companyService;
+    private CompanyService companyService;
 
 
     @ApiOperation(value = "", notes = "findAll")
