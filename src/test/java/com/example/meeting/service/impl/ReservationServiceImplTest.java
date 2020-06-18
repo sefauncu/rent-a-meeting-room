@@ -6,10 +6,12 @@ import com.example.meeting.dto.ReservationDTO;
 import com.example.meeting.exception.MeetingBusinessException;
 import com.example.meeting.repository.CompanyRepository;
 import com.example.meeting.repository.MeetingRoomRepository;
+import com.example.meeting.repository.RegisterRepository;
 import com.example.meeting.repository.ReservationRepository;
 import com.example.meeting.response.ReservationMessageResponse;
 import com.example.meeting.testbase.datahelper.CompanyTestDOFactory;
 import com.example.meeting.testbase.datahelper.MeetingRoomTestDOFactory;
+import com.example.meeting.testbase.datahelper.RegisterTestDOFactory;
 import com.example.meeting.testbase.datahelper.ReservationTestDOFactory;
 import com.example.meeting.util.MappingHelper;
 import org.junit.Assert;
@@ -37,6 +39,7 @@ public class ReservationServiceImplTest {
     protected static ReservationTestDOFactory doFactory;
     protected static CompanyTestDOFactory doFactory2;
     protected static MeetingRoomTestDOFactory doFactory3;
+    protected static RegisterTestDOFactory doFactory4;
 
     @Mock
     private ReservationRepository reservationRepository;
@@ -46,12 +49,15 @@ public class ReservationServiceImplTest {
     private CompanyRepository companyRepository;
     @Mock
     private MeetingRoomRepository meetingRoomRepository;
+    @Mock
+    private RegisterRepository registerRepository;
 
     @Before
     public void setUp() throws Exception {
         ReservationServiceImplTest.doFactory = new ReservationTestDOFactory();
         ReservationServiceImplTest.doFactory2 = new CompanyTestDOFactory();
         ReservationServiceImplTest.doFactory3 = new MeetingRoomTestDOFactory();
+        ReservationServiceImplTest.doFactory4 = new RegisterTestDOFactory();
         MockitoAnnotations.initMocks(this);
     }
 
@@ -72,6 +78,7 @@ public class ReservationServiceImplTest {
         Reservation reservation = MappingHelper.map(reservationDTO, Reservation.class);
         Mockito.when(companyRepository.findById(Mockito.anyLong())).thenReturn(Optional.of(doFactory2.createCompany()));
         Mockito.when(meetingRoomRepository.findById(Mockito.anyLong())).thenReturn(Optional.of(doFactory3.createMeetingRoom()));
+        Mockito.when(registerRepository.findByCompanyId(Mockito.anyLong())).thenReturn(doFactory4.createRegister());
         Mockito.when(reservationRepository.save(any(Reservation.class))).thenReturn(reservation);
         ReservationMessageResponse reservationMessageResponse = reservationService.save(reservationDTO);
         Assert.assertEquals(reservation.getId(), reservationMessageResponse.getId());
@@ -87,6 +94,7 @@ public class ReservationServiceImplTest {
             reservationList.add(reservation);
             Mockito.when(companyRepository.findById(Mockito.anyLong())).thenReturn(Optional.of(doFactory2.createCompany()));
             Mockito.when(meetingRoomRepository.findById(Mockito.anyLong())).thenReturn(Optional.of(doFactory3.createMeetingRoom()));
+            Mockito.when(registerRepository.findByCompanyId(Mockito.anyLong())).thenReturn(doFactory4.createRegister());
             Mockito.when(reservationRepository.findByMeetingRoomIdAndCompanyId(Mockito.anyLong(), Mockito.anyLong())).thenReturn(new ArrayList<>());
             Mockito.when(reservationRepository.findByMeetingRoomId(Mockito.anyLong())).thenReturn(reservationList);
             reservationDTO.setStartDate(LocalDateTime.now());
