@@ -3,11 +3,13 @@ package com.example.meeting.service.impl;
 import com.example.meeting.constants.MeetingBusinessRule;
 import com.example.meeting.domain.Company;
 import com.example.meeting.domain.MeetingRoom;
+import com.example.meeting.domain.Register;
 import com.example.meeting.domain.Reservation;
 import com.example.meeting.dto.ReservationDTO;
 import com.example.meeting.exception.MeetingBusinessException;
 import com.example.meeting.repository.CompanyRepository;
 import com.example.meeting.repository.MeetingRoomRepository;
+import com.example.meeting.repository.RegisterRepository;
 import com.example.meeting.repository.ReservationRepository;
 import com.example.meeting.response.ReservationMessageResponse;
 import com.example.meeting.service.ReservationService;
@@ -27,6 +29,8 @@ public class ReservationServiceImpl implements ReservationService {
     private CompanyRepository companyRepository;
     @Autowired
     private MeetingRoomRepository meetingRoomRepository;
+    @Autowired
+    private RegisterRepository registerRepository;
 
     private void validate(ReservationDTO reservationDTO) {
         if (reservationDTO.getStartDate() == null) {
@@ -51,6 +55,11 @@ public class ReservationServiceImpl implements ReservationService {
         if (!optionalCompany.isPresent()) {
             throw new MeetingBusinessException(MeetingBusinessRule.COMPANY_NOT_FOUND.getDescription());
         }
+        Register registerByCompanyId = registerRepository.findByCompanyId(reservationDTO.getCompanyId());
+        if (registerByCompanyId == null) {
+            throw new MeetingBusinessException(MeetingBusinessRule.COMPANY_NOT_A_MEMBER.getDescription());
+        }
+
         Optional<MeetingRoom> optionalMeetingRoom = meetingRoomRepository.findById(reservationDTO.getMeetingRoomId());
         if (!optionalMeetingRoom.isPresent()) {
             throw new MeetingBusinessException(MeetingBusinessRule.MEETING_ROOM_NOT_FOUND.getDescription());
