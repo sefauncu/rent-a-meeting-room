@@ -61,6 +61,9 @@ public class ReservationServiceImpl implements ReservationService {
             throw new MeetingBusinessException(MeetingBusinessRule.THIS_MEETING_ROOMS_CAPACITY_RESTRICTED.getDescription() +
                     " " + meetingRoom.getPersonCapacity() + " " + MeetingBusinessRule.PEOPLE);
         }
+        if (!company.getLocation().getId().equals(meetingRoom.getProvince().getId())) {
+            throw new MeetingBusinessException(MeetingBusinessRule.PROVINCE_DOES_NOT_MATCH.getDescription());
+        }
         Reservation reservationByCode = reservationRepository.findOneByCode(reservationDTO.getCode());
 
         if (Optional.ofNullable(reservationByCode).isPresent()) {
