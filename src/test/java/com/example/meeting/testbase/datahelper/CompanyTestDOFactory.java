@@ -14,6 +14,15 @@ public class CompanyTestDOFactory {
         return companyDTO;
     }
 
+    public CompanyDTO saveCompanyDTO() {
+        CompanyDTO companyDTO = new CompanyDTO();
+        companyDTO.setId(null);
+        companyDTO.setName("Test");
+        companyDTO.setLocationId(1L);
+        companyDTO.setTotalEmployeeNumber(10);
+        return companyDTO;
+    }
+
     public Company createCompany() {
         ProvinceTestDOFactory doFactory = new ProvinceTestDOFactory();
         Company company = new Company();
