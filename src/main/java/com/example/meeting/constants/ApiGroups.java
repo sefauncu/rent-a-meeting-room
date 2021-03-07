@@ -64,4 +64,15 @@ public final class ApiGroups {
         private ReservationOperationApi() {
         }
     }
+
+    public static final class CampaignOperationApi {
+        public static final String NAME = "campaignoperation-api";
+        public static final String TITLE = "CampaignOperationApi";
+        public static final String PATH = "/api/campaign/**";
+        public static final String DESCRIPTION = "Campaign Operation Api";
+
+        private CampaignOperationApi() {
+        }
+    }
+
 }

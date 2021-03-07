@@ -8,5 +8,6 @@ public final class ApiEndpoints {
     public static final String REGISTER_API_URL = API_BASE_URL + "/register";
     public static final String MEETING_ROOM_API_URL = API_BASE_URL + "/meeting-room";
     public static final String RESERVATION_API_URL = API_BASE_URL + "/reservation";
+    public static final String CAMPAIGN_API_URL = API_BASE_URL + "/campaign";
 
 }
